@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -28,10 +29,11 @@ public class AngelBlockItem extends BlockItem {
 
       BlockPos pos = new BlockPos(x,y,z);
 
-      if (world.isAirBlock(pos))
-      world.setBlockState(pos, AngelBlockMod.Objects.angel_block.getDefaultState());
-      if (!player.abilities.isCreativeMode)
-      player.getHeldItem(hand).shrink(1);
+      if (world.isAirBlock(pos) || !world.getFluidState(pos).isEmpty()) {
+        world.setBlockState(pos, AngelBlockMod.angel_block.getDefaultState());
+        if (!player.abilities.isCreativeMode)
+          player.getHeldItem(hand).shrink(1);
+      }
     }
     return new ActionResult<>(ActionResultType.PASS, player.getHeldItem(hand));
   }

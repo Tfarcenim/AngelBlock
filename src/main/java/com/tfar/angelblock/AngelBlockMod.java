@@ -17,6 +17,10 @@ public class AngelBlockMod
 
   public static final String MODID = "angelblock";
 
+  @ObjectHolder(MODID+":angel_block")
+  public static final Block angel_block = null;
+
+
   // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
   // Event bus for receiving Registry Events)
   @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
@@ -31,13 +35,9 @@ public class AngelBlockMod
     @SubscribeEvent
     public static void onItemsRegistry(final RegistryEvent.Register<Item> event) {
       // register a new item here
-      event.getRegistry().register(new AngelBlockItem(Objects.angel_block,new Item.Properties()
+      event.getRegistry().register(new AngelBlockItem(angel_block,new Item.Properties()
               .group(ItemGroup.BUILDING_BLOCKS))
               .setRegistryName("angel_block"));
     }
-  }
-  @ObjectHolder(MODID)
-  public static class Objects {
-    public static final Block angel_block = null;
   }
 }
