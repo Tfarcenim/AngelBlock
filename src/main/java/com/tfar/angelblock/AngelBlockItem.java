@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -23,9 +22,9 @@ public class AngelBlockItem extends BlockItem {
   public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player,@Nonnull Hand hand) {
 
     if (!world.isRemote){
-      double x = player.posX + 3 * player.getLookVec().x;
-      double y = 1.5 + player.posY + 3 * player.getLookVec().y;
-      double z = player.posZ + 3 * player.getLookVec().z;
+      double x = player.getPositionVec().x + 3 * player.getLookVec().x;
+      double y = 1.5 + player.getPositionVec().y  + 3 * player.getLookVec().y;
+      double z = player.getPositionVec().z  + 3 * player.getLookVec().z;
 
       BlockPos pos = new BlockPos(x,y,z);
 
