@@ -22,13 +22,13 @@ public class AngelBlockItem extends BlockItem {
   public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player,@Nonnull Hand hand) {
 
     if (!world.isRemote){
-      double x = player.getPositionVec().x + 3 * player.getLookVec().x;
-      double y = 1.5 + player.getPositionVec().y  + 3 * player.getLookVec().y;
-      double z = player.getPositionVec().z  + 3 * player.getLookVec().z;
+      double x = player.getPositionVec().x + 4 * player.getLookVec().x;
+      double y = player.getEyeHeight() + player.getPositionVec().y  + 4 * player.getLookVec().y;
+      double z = player.getPositionVec().z  + 4 * player.getLookVec().z;
 
       BlockPos pos = new BlockPos(x,y,z);
 
-      if (world.isAirBlock(pos) || !world.getFluidState(pos).isEmpty()) {
+      if (world.isAirBlock(pos)) {
         world.setBlockState(pos, AngelBlockMod.angel_block.getDefaultState());
         if (!player.abilities.isCreativeMode)
           player.getHeldItem(hand).shrink(1);
