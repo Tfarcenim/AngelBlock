@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
@@ -52,13 +52,13 @@ public class Render {
 
 	public static void renderBlock(RenderWorldLastEvent e, BlockPos pos, int color) {
 
-		Vec3d vec3d = TileEntityRendererDispatcher.instance.renderInfo.getProjectedView();
+		Vector3d vec3d = TileEntityRendererDispatcher.instance.renderInfo.getProjectedView();
 
 		MatrixStack stack = e.getMatrixStack();
 		stack.translate(-vec3d.x, -vec3d.y, -vec3d.z);
 
 		RenderSystem.pushMatrix();
-		RenderSystem.multMatrix(stack.getLast().getPositionMatrix());
+		RenderSystem.multMatrix(stack.getLast().getMatrix());
 
 		Tessellator tessellator = Tessellator.getInstance();
 		BufferBuilder buffer = tessellator.getBuffer();
